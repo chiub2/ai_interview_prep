@@ -8,6 +8,8 @@ export async function GET(){
     return Response.json({ success: true, data: "THANK YOU!" }, {status: 200});
 }
 
+console.log("🔑 GOOGLE_GENERATIVE_AI_API_KEY:", process.env.GOOGLE_GENERATIVE_AI_API_KEY);
+
 export async function POST(request: Request){
     const {type, role, level, techstack, amount, userid} = await request.json(); 
 
@@ -41,7 +43,7 @@ export async function POST(request: Request){
 
         await db.collection("Interviews").add(interview);
         return Response.json({ success: true}, {status: 200});
-        
+
     } catch (error){
         console.log(error);  
         return Response.json({ success: false, error }, {status: 500});
