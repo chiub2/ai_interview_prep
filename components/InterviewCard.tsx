@@ -8,8 +8,8 @@ import DisplayTechIcons from './DisplayTechIcons';
 import { getFeedbackByInterviewId } from '@/lib/actions/general.action';
 
 
-const InterviewCard = async ({id, userId, role, type, techstack, createdAt }: InterviewCardProps) => {
-    const feedback = userId && id ? await getFeedbackByInterviewId ({ interviewId: id, userId}) : null;
+const InterviewCard = async ({interviewId, userId, role, type, techstack, createdAt }: InterviewCardProps) => {
+    const feedback = userId && interviewId ? await getFeedbackByInterviewId ({ interviewId: interviewId, userId}) : null;
     const normalizedType = /mix/gi.test(type) ? 'Mixed' : 'Technical';
     const formattedDate = dayjs(feedback?.createdAt || createdAt|| Date.now()).format('MMMM D, YYYY');
     return (
@@ -43,7 +43,7 @@ const InterviewCard = async ({id, userId, role, type, techstack, createdAt }: In
                 <div className='flex flex-row justify-between'>
                     <DisplayTechIcons techStack={techstack}/>
                     <Button className="btn-primary">
-                        <Link href={feedback ? `/interview/${id}/feedback` : `/interview/${id}`}>
+                        <Link href={feedback ? `/interview/${interviewId}/feedback` : `/interview/${interviewId}`}>
                             {feedback ? 'Check Feedback' : "View Interview"}
                         </Link>
                     </Button>
