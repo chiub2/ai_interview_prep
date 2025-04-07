@@ -331,3 +331,41 @@
     transform: translateY(0);
   }
 }
+
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-1, .ripple-2, .ripple-3 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2ecc71;
+  animation: ripple 4s infinite;
+}
+
+.ripple-1 {
+  top: 20%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.ripple-2 {
+  top: 50%;
+  right: 20%;
+  animation-delay: 1s;
+}
+
+.ripple-3 {
+  bottom: 20%;
+  left: 40%;
+  animation-delay: 2s;
+}
