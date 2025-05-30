@@ -71,12 +71,16 @@ const Agent = ({userName, userId, type, interviewId, questions}: AgentProps) => 
     // Handle interview completion and navigation
     useEffect(() => {
         if (callStatus === CallStatus.FINISHED) {
-            // Always navigate home after a delay
-            setTimeout(() => {
-                router.push('/');
-            }, 1000);
+            if (type === 'generate') {
+                setTimeout(() => {
+                    router.push('/');
+                }, 1000);
+            } else {
+                handleGenerateFeedback(messages);
+            }
         }
-    }, [callStatus, router]);
+    }, [messages, callStatus, type]);
+    
 
     // Handle feedback generation after interview completion
     const handleGenerateFeedback = async (messages: SavedMessage[]) => {
